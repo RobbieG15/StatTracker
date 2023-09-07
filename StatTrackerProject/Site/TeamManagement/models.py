@@ -40,6 +40,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
     is_superuser = models.BooleanField(default = False)
+    has_organization = models.BooleanField(default = False)
 
     firstName = models.CharField(
         verbose_name = 'First Name',
@@ -77,3 +78,100 @@ class User(AbstractBaseUser):
         return self.is_superuser
 
     objects = UserManager()
+
+class Organization(models.Model):
+
+    org_type_choices = [
+        'Football',
+    ]
+
+    state_choices = [
+        'Ohio',
+    ]
+
+    @classmethod
+    def create(cls, school_name, org_type, city, state, owner):
+        org = cls(
+            school_name = school_name,
+            org_type = org_type,
+            city = city,
+            state = state,
+            owner = owner,
+        )
+
+        return org
+
+    school_name = models.CharField(
+        verbose_name = 'School Name',
+        max_length = 255,
+    )
+
+    org_type = models.CharField(
+        max_length = 255,
+    )
+
+    city = models.CharField(
+        verbose_name = 'City',
+        max_length = 255,
+    )
+
+    state = models.CharField(
+        verbose_name = 'State',
+        max_length = 255,
+    )
+
+    owner = models.ForeignKey(
+        User,
+        on_delete = models.CASCADE,
+    )
+
+class Team(models.Model):
+
+    @classmethod
+    def create(cls, team_name, org):
+        team = cls(
+            team_name = team_name,
+            org = org,
+        )
+
+        return team
+
+    team_name = models.CharField(
+        verbose_name = 'School Name',
+        max_length = 255,
+    )
+
+    org = models.ForeignKey(
+        Organization, 
+        on_delete = models.CASCADE,
+    )
+
+class Player(models.Model):
+
+    @classmethod
+    def create(cls, first_name, last_name, number, team):
+        player = cls(
+            first_name = first_name,
+            last_name = last_name,
+            number = number,
+            team = team
+        )
+
+        return player
+
+    first_name = models.CharField(
+        verbose_name = 'First Name',
+        max_length = 255,
+    )
+
+    last_name = models.CharField(
+        verbose_name = 'Last Name',
+        max_length = 255,
+    )
+
+    number = models.IntegerField(
+        primary_key = True,
+        unique = True,
+    )
+
+    team = models.ForeignKey(Team, on_delete = models.CASCADE)

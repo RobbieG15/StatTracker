@@ -3,5 +3,26 @@
 {% extends "../Master.html" %}
 
 {% block content %} 
+<h3>
+    Add Team
+</h3>
 
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="team_name" class="form-label">Team Name</label>
+        <input
+        type="text"
+        class="form-control"
+        id="team_name"
+        name="team_name"
+        placeholder=""
+        />
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-outline-dark" type="submit">
+        Add
+        </button>
+    </div>
+</form>
 {% endblock %}

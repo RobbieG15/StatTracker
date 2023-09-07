@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% extends "../Master.html" %}
+
+{% block content %} 
+<h3>
+    Select Organization
+</h3>
+{% for org in orgs %}
+<div class="card">
+    <h5 class="card-header">{{org.school_name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{org.org_type}}</h5>
+      <p class="card-text">{{org.city}}, {{org.state}}</p>
+      <a href="{% url 'orgProfile' pk=org.pk %}" class="btn btn-primary">Go to profile</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

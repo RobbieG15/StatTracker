@@ -3,5 +3,15 @@
 {% extends "../Master.html" %}
 
 {% block content %} 
-
+<h3>
+    Team List
+</h3>
+{% for team in teams %}
+    <div class="card">
+        <h5 class="card-header">{{team.team_name}}</h5>
+        <div class="card-body">
+        <a href="{% url 'editTeam' pk=pk team_name=team.team_name %}" class="btn btn-primary">Edit team</a>
+        </div>
+    </div>
+{% endfor %}
 {% endblock %}

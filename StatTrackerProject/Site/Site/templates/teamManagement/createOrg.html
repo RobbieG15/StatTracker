@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load bootstrap5 %} 
+        {% bootstrap_css %} 
+        {% bootstrap_javascript %} 
+        {% bootstrap_messages %}
+    </head>
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="border border-3 border-primary"></div>
+                <div class="card bg-white shadow-lg">
+                <div class="card-body p-5">
+                    <form class="mb-3 mt-md-4">
+                    <h2 class="fw-bold mb-2 text-uppercase">Stat Track</h2>
+                    <p class="mb-4">Follow form to create organization</p>
+                    <div class="mb-3">
+                        <label for="school_name" class="form-label">School Name</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="school_name"
+                        name="school_name"
+                        placeholder=""
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="org_type" class="form-label">Organization Type</label>
+                        <select class="select form-control" id="org_type" name="org_type">
+                            {% for org in org_types %}
+                                <option value="{{org}}">{{org}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        name="city"
+                        placeholder=""
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State</label>
+                        <select class="select form-control" id="state" name="state">
+                            {% for state in states %}
+                                <option value="{{state}}">{{state}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-dark" type="submit">
+                        Create
+                        </button>
+                    </div>
+                    </form>
+                    <div>
+                    <p class="mb-0 text-center">
+                        Not ready to create an organization?
+                        <a href="/" class="text-primary fw-bold"
+                        >Return to home</a>
+                    </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</html>
