@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load bootstrap5 %} 
+        {% bootstrap_css %} 
+        {% bootstrap_javascript %} 
+        {% bootstrap_messages %}
+    </head>
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="border border-3 border-primary"></div>
+                <div class="card bg-white shadow-lg">
+                <div class="card-body p-5">
+                    <form class="mb-3 mt-md-4">
+                    <h2 class="fw-bold mb-2 text-uppercase">Stat Track</h2>
+                    <p class="mb-4">Follow form to register</p>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="name@example.com"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="John"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Doe"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password1" class="form-label">Password</label>
+                        <input
+                        type="password"
+                        class="form-control"
+                        id="password1"
+                        name="password1"
+                        placeholder="*******"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password2" class="form-label">Confirm Password</label>
+                        <input
+                        type="password"
+                        class="form-control"
+                        id="password2"
+                        name="password2"
+                        placeholder="*******"
+                        />
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-dark" type="submit">
+                        Register
+                        </button>
+                    </div>
+                    </form>
+                    <div>
+                    <p class="mb-0 text-center">
+                        Already have an account?
+                        <a href="/teamManage/login" class="text-primary fw-bold"
+                        >Log In</a>
+                    </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</html>

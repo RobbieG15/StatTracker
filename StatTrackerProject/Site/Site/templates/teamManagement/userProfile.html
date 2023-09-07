@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+{% extends "../Master.html" %}
+
+{% block content %} 
+<!-- Messages --> 
+{% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+<!-- Messages -->
+{% endblock %}

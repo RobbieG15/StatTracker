@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load bootstrap5 %} 
+    {% bootstrap_css %} 
+    {% bootstrap_javascript %} 
+  </head>
+
+  <body>
+    <!-- Messages -->
+    <!-- Messages -->
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">StatTrack</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/teamManage">Team Management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/statTracker">Stat Tracker</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="statAnalysis">Stat Analysis</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDarkDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Other Links
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-light"
+                aria-labelledby="navbarDarkDropdownMenuLink"
+              >
+                <li><a class="dropdown-item" href="/pricing">Pricing</a></li>
+                <li><a class="dropdown-item" href="/howToList">How To</a></li>
+                <li><a class="dropdown-item" href="/FAQ">FAQ</a></li>
+                <li><a class="dropdown-item" href="/about">About</a></li>
+                <li><a class="dropdown-item" href="/help">Help</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex text-align-center">
+            {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="teamManagement/userProfile">Profile</a>
+                <a class="nav-item nav-link" href="teamManagement/logout">Logout</a>
+            {% else %}
+                <a class="nav-item nav-link" href="teamManagement/login">Login</a>
+                <a class="nav-item nav-link" href="teamManagement/register">Register</a>
+            {% endif %}
+        </div>
+      </div>
+    </nav>
+    <!-- NavBar -->
+
+    <div class="container">{% block content %} {% endblock %}</div>
+  </body>
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-light text-muted">
+    <!-- Section: Social media -->
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    >
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span
+          >Reach out with any questions you may have so they can be
+          resolved.</span
+        >
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Stat Tracker
+            </h6>
+            <p>Striving to make tracking sports easy one step at a time.</p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Website Navigation</h6>
+            <p>
+              <a href="/teamManage" class="text-reset">Team Management</a>
+            </p>
+            <p>
+              <a href="/statTracker" class="text-reset">Stat Tracker</a>
+            </p>
+            <p>
+              <a href="/statAnalysis" class="text-reset">Stat Analysis</a>
+            </p>
+            <p>
+              <a href="/about" class="text-reset">About</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Useful information</h6>
+            <p>
+              <a href="/pricing" class="text-reset">Pricing</a>
+            </p>
+            <p>
+              <a href="/howToList" class="text-reset">How tos</a>
+            </p>
+            <p>
+              <a href="/FAQ" class="text-reset">FAQs</a>
+            </p>
+            <p>
+              <a href="/help" class="text-reset">Help</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i> Clyde, Ohio 43410, US</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              robbieg1515@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> (419) 603-9918</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+      © 2023 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/"
+        >statTracker.com</a
+      >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</html>
