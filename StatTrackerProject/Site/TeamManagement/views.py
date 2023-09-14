@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import RegisterForm, LoginForm, OrganizationCreationForm, TeamCreationForm, PlayerAddForm, UploadFileForm
 from .models import Organization, Team, Player
 from .helperMethods import handle_input_file
+from io import TextIOWrapper
 
 # Create your views here.
 def teamManage(request):
@@ -89,19 +90,21 @@ def editTeam(request, pk=None, team_name=None):
             if (request.method == 'POST'):
                 individualForm = PlayerAddForm(request.POST)
                 fileForm = UploadFileForm(request.POST, request.FILES)
-                if individualForm.is_valid:
+                if individualForm.is_valid and request.POST.get('number') != None:
                     player = Player.create(
                         first_name = request.POST.get('first_name'), 
                         last_name = request.POST.get('last_name'),
                         number = request.POST.get('number'),
                         team = team
                     )
-                    player.save()
+                    if len(Player.objects.filter(number = player.number)) == 0:
+                        player.save()
                 else:
                     print(individualForm.errors)
 
-                if fileForm.is_valid:
-                    handle_input_file(request.FILES['docfile'], org, team)
+                if fileForm.is_valid and 'docfile' in request.FILES:
+                    f = TextIOWrapper(request.FILES['docfile'].file, encoding=request.encoding)
+                    handle_input_file(f, org, team)
             else:
                 individualForm = PlayerAddForm(request.POST)
                 fileForm = UploadFileForm()

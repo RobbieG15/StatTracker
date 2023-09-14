@@ -5,10 +5,14 @@
 {% block content %} 
     <h2>
         {{team.team_name}}
+        <br><br>
     </h2>
 
     <form method="POST" class="form-group">
         {% csrf_token %}
+        <h3>
+            Add Single Player
+        </h3>
         <div class="mb-3">
             <label for="first_name" class="form-label">First Name</label>
             <input
@@ -45,8 +49,21 @@
             </button>
         </div>
     </form>
+    <h2>
+        <br>
+        Or
+        <br>
+        <br>
+    </h2>
     <form action="" method="post" enctype="multipart/form-data" class-="form-group">
         {% csrf_token %}
+        <h3>
+            Add Team From CSV File
+        </h3>
+        <h6>
+            CSV file needs to include column names in the first row and be of the form firstName, lastName, number.
+        </h6>
+        <br>
         <div class="mb-3">
             <label for="File" class="form-label">File Upload</label>
             <input id="docfile" type="file" name="docfile"/>
@@ -56,10 +73,13 @@
                 </button>
             </div>
         </div>
+        <br>
+        <br>
     </form>
 
     <h2>
         Roster
+        <br>
     </h2>
 
     {% for player in players %}

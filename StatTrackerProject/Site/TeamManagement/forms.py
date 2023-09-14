@@ -34,7 +34,9 @@ class PlayerAddForm(forms.Form):
         label = 'Last Name'
     )
 
-    number = forms.IntegerField()
+    number = forms.IntegerField(
+        required = True,
+    )
 
 class UploadFileForm(forms.Form):
     file = forms.FileField()
