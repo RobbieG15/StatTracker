@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+{% extends "../Master.html" %}
+
+{% block content %} 
+    <h2>
+        {{team.team_name}}
+    </h2>
+
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="homeTeam" class="form-label">Home Team</label>
+            <select class="form-select" id="homeTeam" name="homeTeam">
+                {% for team in teams %}
+                    <option>{{team.team_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="awayTeam" class="form-label">Away Team</label>
+            <select class="form-select" id="awayTeam" name="awayTeam">
+                {% for team in teams %}
+                    <option>{{team.team_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="dateTime" class="form-label">Date and Time</label>
+            <input
+            type="datetime-local"
+            class="form-control"
+            id="dateTime"
+            name="dateTime"
+            placeholder="2023-06-01T08:30"
+            />
+        </div>  
+        <div class="d-grid">
+            <button class="btn btn-outline-dark" type="submit">
+            Add Game
+            </button>
+        </div>
+    </form>
+    <h2>
+        Game List
+    </h2>
+    {% for game in games %}
+        <div class="card">
+            <h5 class="card-header">{{game.homeTeam.team_name}} vs. {{game.awayTeam.team_name}}</h5>
+            <div class="card-body">
+                <h6>{{game.dateTime}}</h6>
+            </div>
+            <div class="card-body">
+            <a href="{% url 'editGame' pk=game.pk %}" class="btn btn-primary">Edit Game</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

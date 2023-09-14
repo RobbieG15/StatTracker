@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% extends "../Master.html" %}
+
+{% block content %} 
+<h3>
+    Game List
+</h3>
+{% for game in games %}
+    <div class="card">
+        <h5 class="card-header">{{game.homeTeam}} vs. {{game.awayTeam}}</h5>
+        <h3>{{game.dateTime}}</h3>
+        <div class="card-body">
+        <a href="{% url 'editGame' pk=pk %}" class="btn btn-primary">Edit Game</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
