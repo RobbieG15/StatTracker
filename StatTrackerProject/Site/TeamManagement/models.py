@@ -175,3 +175,67 @@ class Player(models.Model):
     )
 
     team = models.ForeignKey(Team, on_delete = models.CASCADE)
+
+class Game(models.Model):
+
+    @classmethod
+    def create(cls, org, homeTeam, awayTeam, dateTime):
+        game = cls(
+            org = org,
+            homeTeam = homeTeam,
+            awayTeam = awayTeam,
+            dateTime = dateTime
+        )
+
+        return game
+
+    org = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    homeTeam = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='homeTeam')
+    awayTeam = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='awayTeam')
+    dateTime = models.DateTimeField()
+
+
+
+class FootballStat(models.Model):
+
+    @classmethod
+    def create(cls, game, player):
+        footballStat = cls(
+            game = game,
+            player = player
+        )
+
+        return footballStat
+
+
+    # Passing (attempts, completions, yards, touchdowns)
+    attemptsPassing = models.IntegerField(default=0)
+    completionsPassing = models.IntegerField(default=0)
+    yardsPassing = models.IntegerField(default=0)
+    touchdownsPassing = models.IntegerField(default=0)
+
+    # Recieving
+    targets = models.IntegerField(default=0)
+    catches = models.IntegerField(default=0)
+    yardsRecieving = models.IntegerField(default=0)
+    touchdownsRecieving = models.IntegerField(default=0)
+
+    # Rushing (carries, yards, touchdowns)
+    carries = models.IntegerField(default=0)
+    yardsRushing = models.IntegerField(default=0)
+    touchdownsRushing = models.IntegerField(default=0)
+
+    # Defense (tackles, TFLs, Sacks, forced fumbles, fumble recoveries, interceptions, touchdowns)
+    tackles = models.IntegerField(default=0)
+    TFLs = models.IntegerField(default=0)
+    sacks = models.IntegerField(default=0)
+    forcedFumbles = models.IntegerField(default=0)
+    fumbleRecoveries = models.IntegerField(default=0)
+    interceptions = models.IntegerField(default=0)
+    touchdownsDefense = models.IntegerField(default=0)
+
+    # Game
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+
+    # Player
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
