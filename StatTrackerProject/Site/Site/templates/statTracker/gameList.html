@@ -8,10 +8,10 @@
 </h3>
 {% for game in games %}
     <div class="card">
-        <h5 class="card-header">{{game.homeTeam}} vs. {{game.awayTeam}}</h5>
+        <h5 class="card-header">{{game.homeTeam.team_name}} vs. {{game.awayTeam.team_name}}</h5>
         <h3>{{game.dateTime}}</h3>
         <div class="card-body">
-        <a href="{% url 'editGame' pk=pk %}" class="btn btn-primary">Edit Game</a>
+        <a href="{% url 'startGame' orgPk=pk gamePk=game.pk %}" class="btn btn-primary">Start Game</a>
         </div>
     </div>
 {% endfor %}

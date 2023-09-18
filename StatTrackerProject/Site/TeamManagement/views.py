@@ -66,6 +66,7 @@ def orgProfile(request, pk=None):
     if (request.user.is_authenticated):
         if (pk):
             org = Organization.objects.filter(pk=pk, owner = request.user)
+            request.session['orgPk'] = pk
             return render(request, 'teamManagement/orgProfile.html', context = {'org': org, 'pk': pk})
         else:
             return redirect('teamManage')
